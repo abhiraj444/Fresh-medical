@@ -62,14 +62,14 @@ export function DiagnosisCard({ diagnosis }: DiagnosisCardProps) {
                             <p className="text-sm text-muted-foreground">{diagnosis.reasoning}</p>
                         </div>
                         {hasMissingInfo && (
-                            <div className="rounded-md border border-amber-300 bg-amber-50 p-4 dark:bg-amber-950">
+                            <div className="rounded-md border border-border bg-muted/50 p-4">
                                 {diagnosis.missingInformation?.information && diagnosis.missingInformation.information.length > 0 && (
                                     <div className="mb-4">
-                                        <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2">
+                                        <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
                                             <FileQuestion className="h-4 w-4" />
                                             Missing Information
                                         </h4>
-                                        <ul className="list-disc space-y-1 pl-5 text-sm text-amber-700 dark:text-amber-300">
+                                        <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
                                             {diagnosis.missingInformation.information.map((info, i) => (
                                             <li key={`info-${i}`}>{info}</li>
                                             ))}
@@ -78,11 +78,11 @@ export function DiagnosisCard({ diagnosis }: DiagnosisCardProps) {
                                 )}
                                 {diagnosis.missingInformation?.tests && diagnosis.missingInformation.tests.length > 0 && (
                                      <div>
-                                        <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex items-center gap-2">
+                                        <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
                                             <TestTubeDiagonal className="h-4 w-4" />
                                             Recommended Next Steps
                                         </h4>
-                                        <ul className="list-disc space-y-1 pl-5 text-sm text-amber-700 dark:text-amber-300">
+                                        <ul className="list-disc space-y-1 pl-5 text-sm text-muted-foreground">
                                             {diagnosis.missingInformation.tests.map((test, i) => (
                                             <li key={`test-${i}`}>{test}</li>
                                             ))}

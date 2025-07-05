@@ -8,23 +8,23 @@ body {
 
 @layer base {
   :root {
-    --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 210 10% 25%; /* Softer dark gray */
+    --background: 210 20% 97%; /* #F5F7FA - Soft blue-gray */
+    --foreground: 210 20% 17%; /* #1F2937 - Dark navy */
     --card: 0 0% 100%;
-    --card-foreground: 210 10% 25%;
+    --card-foreground: 210 20% 17%;
     --popover: 0 0% 100%;
-    --popover-foreground: 210 10% 25%;
-    --primary: 210 90% 45%; /* Softer blue */
+    --popover-foreground: 210 20% 17%;
+    --primary: 210 90% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 97%; /* Very light gray */
-    --secondary-foreground: 210 10% 25%;
-    --muted: 210 15% 92%; /* Slightly darker light gray */
+    --secondary: 210 20% 97%;
+    --secondary-foreground: 210 20% 17%;
+    --muted: 210 15% 92%;
     --muted-foreground: 210 10% 45%;
-    --accent: 150 50% 40%; /* Softer green */
+    --accent: 200 90% 94%; /* #E0F2FE - Light blue accent */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 10% 90%; /* Lighter, more subtle gray */
+    --border: 210 20% 90%; /* #D9E2EC - Muted gray */
     --input: 210 10% 90%;
     --ring: 210 90% 45%;
     --chart-1: 12 76% 61%;
@@ -36,23 +36,23 @@ body {
   }
 
   .dark {
-    --background: 222 40% 12%; /* Slightly lighter dark background */
-    --foreground: 210 40% 98%;
-    --card: 222 40% 12%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 40% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 90% 60%; /* Softer blue for dark mode */
+    --background: 210 20% 17%; /* #1E293B - Very dark slate or blue-gray */
+    --foreground: 210 20% 96%; /* #F1F5F9 - Light gray-white */
+    --card: 210 20% 17%;
+    --card-foreground: 210 20% 96%;
+    --popover: 210 20% 17%;
+    --popover-foreground: 210 20% 96%;
+    --primary: 210 90% 60%;
     --primary-foreground: 222 47% 11%;
-    --secondary: 217 30% 20%; /* Slightly lighter dark gray */
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 25% 25%; /* Similar to secondary */
+    --secondary: 217 30% 20%;
+    --secondary-foreground: 210 20% 96%;
+    --muted: 217 25% 25%;
     --muted-foreground: 215 25% 65%;
-    --accent: 180 70% 40%; /* Softer green for dark mode */
+    --accent: 170 60% 50%; /* #2DD4BF - Dim teal */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 217 25% 25%; /* Lighter dark gray */
+    --border: 210 20% 26%; /* #334155 - Slightly lighter slate */
     --input: 217 25% 25%;
     --ring: 210 90% 60%;
     --chart-1: 220 70% 50%;

@@ -10,6 +10,8 @@ import {
   Loader2,
   Menu,
   Wand2,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
@@ -32,11 +34,13 @@ import {
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from './ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function Header() {
   const pathname = usePathname();
   const { user, loading } = useAuth();
   const { toast } = useToast();
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = async () => {
     try {
@@ -68,7 +72,7 @@ export default function Header() {
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex flex-shrink-0 items-center gap-2">
           <BrainCircuit className="h-7 w-7 text-primary" />
-          <span className="text-xl font-bold text-foreground">MediGen</span>
+          <span className="text-xl font-bold text-foreground hidden md:block">MediGen</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -87,7 +91,31 @@ export default function Header() {
           ))}
         </nav>
 
+        {/* Mobile Navigation - Icons only */}
+        <nav className="md:hidden flex items-center space-x-4">
+          {navItems.slice(0, 2).map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "flex flex-col items-center gap-1 text-muted-foreground transition-colors hover:text-primary",
+                pathname === item.href ? "text-primary" : ""
+              )}
+            >
+              {item.icon}
+              <span className="text-xs">{item.label.split(' ')[0]}</span>
+            </Link>
+          ))}
+        </nav>
+
         <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" onClick={toggleTheme}>
+            {theme === 'light' ? (
+              <Sun className="h-5 w-5" />
+            ) : (
+              <Moon className="h-5 w-5" />
+            )}
+          </Button>
           {loading ? (
             <Loader2 className="animate-spin" />
           ) : user ? (
@@ -144,7 +172,7 @@ export default function Header() {
                   <span className="text-xl font-bold text-foreground">MediGen</span>
                 </Link>
               </SheetClose>
-              <nav className="flex flex-col gap-4">
+              <nav className="flex flex-col gap-4 hidden md:flex">
                 {navItems.map((item) => (
                   <SheetClose asChild key={item.href}>
                     <Link

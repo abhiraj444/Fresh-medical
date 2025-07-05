@@ -377,22 +377,22 @@ export default function AiDiagnosisPage() {
                                       </div>
                                   </AccordionTrigger>
                                   <AccordionContent>
-                                      <div className="mt-2 rounded-md border border-amber-300 bg-amber-50 p-4 dark:bg-amber-950">
+                                      <div className="mt-2 rounded-md border border-border bg-muted/50 p-4">
                                           <div className="flex items-start justify-between">
-                                              <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex-grow">
+                                              <h4 className="font-semibold text-foreground mb-2 flex-grow">
                                                   Reasoning
                                               </h4>
                                               <Button
                                                   variant="ghost"
                                                   size="icon"
                                                   onClick={() => handleCopy(clinicalAnswer.reasoning, 'reasoning')}
-                                                  className="h-8 w-8 flex-shrink-0 -mr-2 -mt-2 text-amber-800 hover:bg-amber-100 hover:text-amber-900 dark:text-amber-200 dark:hover:bg-amber-900 dark:hover:text-amber-100"
+                                                  className="h-8 w-8 flex-shrink-0 -mr-2 -mt-2 text-muted-foreground hover:bg-muted hover:text-foreground"
                                                   aria-label="Copy reasoning"
                                               >
                                                   <Copy className="h-4 w-4" />
                                               </Button>
                                           </div>
-                                          <div className="prose prose-sm prose-invert max-w-none text-amber-700 dark:text-amber-300" dangerouslySetInnerHTML={{__html: formatText(clinicalAnswer.reasoning)}}></div>
+                                          <div className="prose prose-sm max-w-none text-muted-foreground" dangerouslySetInnerHTML={{__html: formatText(clinicalAnswer.reasoning)}}></div>
                                       </div>
                                   </AccordionContent>
                               </AccordionItem>
