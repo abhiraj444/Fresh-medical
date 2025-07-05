@@ -65,6 +65,7 @@ import { modifySlides } from '@/ai/flows/modify-slides';
 import { useToast } from '@/hooks/use-toast';
 import { Label } from './ui/label';
 import type { Slide, ContentItem, ParagraphContent, ListItemContent } from '@/types';
+export type { Slide };
 
 
 const BoldRenderer = ({ text, bold }: { text: string; bold?: string[] }) => {
@@ -450,7 +451,9 @@ export function SlideEditor({
                             didDrawPage: (data) => {
                                 y = margin;
                                 drawHeader(slide.title);
-                                data.cursor.y = y;
+                                if (data.cursor) {
+                                    data.cursor.y = y;
+                                }
                             }
                         });
                         y = (doc as any).lastAutoTable.finalY + 20;
@@ -579,14 +582,11 @@ export function SlideEditor({
               break;
             }
             case 'note':
-              const noteRuns: TextRun[] = [new TextRun({ text: 'Note: ', italic: true })];
+              const noteRuns: TextRun[] = [new TextRun({ text: 'Note: ', italics: true })];
               const cleanedText = item.text.replace(/^Note:\s*/i, '');
               const contentRuns = createTextRuns(cleanedText);
               contentRuns.forEach(run => {
-                if (!run.options) {
-                  run.options = {};
-                }
-                run.options.italic = true;
+                noteRuns.push(new TextRun({ ...run, italics: true }));
               });
               noteRuns.push(...contentRuns);
               docChildren.push(
@@ -652,7 +652,7 @@ export function SlideEditor({
 
   return (
     <div className="relative">
-      <Card className="shadow-lg">
+      <Card className="border shadow-sm">
         {isModifying && (
           <div className="absolute inset-0 z-20 flex items-center justify-center rounded-lg bg-background/80">
             <div className="flex items-center gap-2 text-muted-foreground">

@@ -12,7 +12,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Wand2, Lightbulb, FileText, Bot, BrainCircuit, PlusCircle, Copy } from 'lucide-react';
+import { Loader2, Wand2, Lightbulb, FileText, Bot, BrainCircuit, PlusCircle, Copy, X } from 'lucide-react';
 import { SlideEditor } from '@/components/SlideEditor';
 import type { Slide } from '@/components/SlideEditor';
 import { useAuth } from '@/hooks/useAuth';
@@ -21,7 +21,9 @@ import { collection, addDoc, serverTimestamp, doc, getDoc, updateDoc } from 'fir
 import type { StructuredQuestion } from '@/types';
 import { QuestionDisplay } from '@/components/QuestionDisplay';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Skeleton } from '@/components/ui/skeleton';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Header from '@/components/Header';
 
 
 export default function ContentGeneratorPage() {
@@ -95,6 +97,11 @@ export default function ContentGeneratorPage() {
       const newPreviews = newFiles.map(file => URL.createObjectURL(file));
       setImagePreviews(prev => [...prev, ...newPreviews]);
     }
+  };
+
+  const handleRemoveImage = (indexToRemove: number) => {
+    setImageFiles(imageFiles.filter((_, index) => index !== indexToRemove));
+    setImagePreviews(imagePreviews.filter((_, index) => index !== indexToRemove));
   };
 
   const handlePaste = (event: ClipboardEvent<HTMLTextAreaElement | HTMLInputElement>) => {
@@ -332,10 +339,11 @@ export default function ContentGeneratorPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-8">
+    <div className="container mx-auto max-w-4xl px-4 pt-8 pb-4">
+      
       <div className="space-y-8">
         {!result && !isLoading && (
-            <Card className="shadow-lg">
+            <Card className="border shadow-sm">
                 <CardHeader>
                     <CardTitle>Content Generator</CardTitle>
                     <CardDescription>
@@ -376,11 +384,20 @@ export default function ContentGeneratorPage() {
                              {imagePreviews.length > 0 && (
                                <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
                                 {imagePreviews.map((preview, i) => (
-                                  <div
-                                    key={i}
-                                    className="relative aspect-square"
-                                  >
-                                     <img src={preview} alt={`preview ${i}`} className="h-full w-full object-cover rounded-md border" />
+                                  <div key={i} className="relative aspect-square">
+                                    <img
+                                      src={preview}
+                                      alt={`preview ${i}`}
+                                      className="h-full w-full object-cover rounded-md border"
+                                    />
+                                    <Button
+                                      variant="destructive"
+                                      size="icon"
+                                      className="absolute top-1 right-1 h-6 w-6"
+                                      onClick={() => handleRemoveImage(i)}
+                                    >
+                                      <X className="h-4 w-4" />
+                                    </Button>
                                   </div>
                                 ))}
                               </div>
@@ -416,14 +433,26 @@ export default function ContentGeneratorPage() {
         )}
 
         {isLoading && !result && (
-          <Card>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                <Loader2 className="h-5 w-5 animate-spin" />
-                <span>AI is thinking...</span>
-              </div>
-            </CardContent>
-          </Card>
+          <div className="space-y-4">
+            <Card>
+              <CardHeader>
+                <Skeleton className="h-6 w-3/4" />
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <Skeleton className="h-6 w-3/4" />
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-5/6" />
+              </CardContent>
+            </Card>
+          </div>
         )}
         
         {structuredQuestion && (
@@ -431,7 +460,7 @@ export default function ContentGeneratorPage() {
         )}
 
         {result && (
-          <Card className="shadow-lg">
+          <Card className="border shadow-sm">
              <CardHeader>
               <div className="flex w-full items-start justify-between gap-4">
                 <div className="flex-grow">

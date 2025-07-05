@@ -3,30 +3,30 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 @layer base {
   :root {
-    --background: 214 67% 96%;
-    --foreground: 222 47% 11%;
-    --card: 214 67% 99%;
-    --card-foreground: 222 47% 11%;
-    --popover: 214 67% 99%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 221 44% 41%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 215 50% 90%;
-    --secondary-foreground: 221 44% 41%;
-    --muted: 215 50% 90%;
-    --muted-foreground: 215 25% 45%;
-    --accent: 180 100% 25%;
-    --accent-foreground: 0 0% 98%;
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 210 10% 25%; /* Softer dark gray */
+    --card: 0 0% 100%;
+    --card-foreground: 210 10% 25%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 10% 25%;
+    --primary: 210 90% 45%; /* Softer blue */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 97%; /* Very light gray */
+    --secondary-foreground: 210 10% 25%;
+    --muted: 210 15% 92%; /* Slightly darker light gray */
+    --muted-foreground: 210 10% 45%;
+    --accent: 150 50% 40%; /* Softer green */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 44% 41%;
+    --border: 210 10% 90%; /* Lighter, more subtle gray */
+    --input: 210 10% 90%;
+    --ring: 210 90% 45%;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -36,25 +36,25 @@ body {
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 222 40% 12%; /* Slightly lighter dark background */
     --foreground: 210 40% 98%;
-    --card: 222 47% 11%;
+    --card: 222 40% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 222 47% 11%;
+    --popover: 222 40% 12%;
     --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
+    --primary: 210 90% 60%; /* Softer blue for dark mode */
     --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
+    --secondary: 217 30% 20%; /* Slightly lighter dark gray */
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
+    --muted: 217 25% 25%; /* Similar to secondary */
     --muted-foreground: 215 25% 65%;
-    --accent: 180 100% 35%;
+    --accent: 180 70% 40%; /* Softer green for dark mode */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 210 40% 98%;
+    --border: 217 25% 25%; /* Lighter dark gray */
+    --input: 217 25% 25%;
+    --ring: 210 90% 60%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;

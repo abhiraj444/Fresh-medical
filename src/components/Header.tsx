@@ -9,6 +9,7 @@ import {
   History,
   Loader2,
   Menu,
+  Wand2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
@@ -39,7 +40,9 @@ export default function Header() {
 
   const handleLogout = async () => {
     try {
-      await signOut(auth);
+      if (auth) {
+        await signOut(auth);
+      }
       toast({
         title: 'Logged Out',
         description: 'You have been successfully logged out.',
@@ -55,39 +58,35 @@ export default function Header() {
   };
 
   const navItems = [
-    { href: '/', label: 'AI Diagnosis', icon: <BrainCircuit /> },
-    {
-      href: '/content-generator',
-      label: 'Content Generator',
-      icon: <UserIcon />,
-    },
+    { href: '/ai-diagnosis', label: 'AI Diagnosis', icon: <BrainCircuit /> },
+    { href: '/content-generator', label: 'Content Generator', icon: <Wand2 /> },
     { href: '/history', label: 'History', icon: <History /> },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-card/80 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full bg-background/90 backdrop-blur-sm shadow-sm">
       <div className="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <Link href="/" className="flex flex-shrink-0 items-center gap-2">
           <BrainCircuit className="h-7 w-7 text-primary" />
           <span className="text-xl font-bold text-foreground">MediGen</span>
         </Link>
-        <nav className="hidden items-center gap-6 md:flex">
-          {user &&
-            navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  'text-sm font-medium transition-colors hover:text-primary flex items-center gap-2',
-                  pathname === item.href
-                    ? 'text-primary'
-                    : 'text-muted-foreground'
-                )}
-              >
-                {item.label}
-              </Link>
-            ))}
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center space-x-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={cn(
+                "text-sm font-medium transition-colors hover:text-primary",
+                pathname === item.href ? "text-primary" : "text-muted-foreground"
+              )}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
+
         <div className="flex items-center gap-2">
           {loading ? (
             <Loader2 className="animate-spin" />
@@ -124,35 +123,57 @@ export default function Header() {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <div className="md:hidden">
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                      <Menu className="h-6 w-6" />
-                    </Button>
-                  </SheetTrigger>
-                  <SheetContent>
-                    <nav className="mt-8 flex flex-col gap-4">
-                      {navItems.map((item) => (
-                        <SheetClose asChild key={item.href}>
-                          <Link
-                            href={item.href}
-                            className="text-lg font-medium"
-                          >
-                            {item.label}
-                          </Link>
-                        </SheetClose>
-                      ))}
-                    </nav>
-                  </SheetContent>
-                </Sheet>
-              </div>
             </>
           ) : (
             <Button asChild>
               <Link href="/login">Login</Link>
             </Button>
           )}
+
+          {/* Mobile Navigation */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <SheetClose asChild>
+                <Link href="/" className="flex items-center gap-2 mb-6">
+                  <BrainCircuit className="h-7 w-7 text-primary" />
+                  <span className="text-xl font-bold text-foreground">MediGen</span>
+                </Link>
+              </SheetClose>
+              <nav className="flex flex-col gap-4">
+                {navItems.map((item) => (
+                  <SheetClose asChild key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
+                        pathname === item.href && "bg-muted text-primary"
+                      )}
+                    >
+                      {item.icon}
+                      {item.label}
+                    </Link>
+                  </SheetClose>
+                ))}
+                {user && (
+                  <SheetClose asChild>
+                    <Button
+                      variant="ghost"
+                      className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary justify-start"
+                      onClick={handleLogout}
+                    >
+                      <LogOut className="h-4 w-4" />
+                      Log out
+                    </Button>
+                  </SheetClose>
+                )}
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>

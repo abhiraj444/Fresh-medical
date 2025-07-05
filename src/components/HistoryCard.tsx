@@ -13,10 +13,10 @@ interface HistoryCardProps {
 
 export function HistoryCard({ caseItem }: HistoryCardProps) {
   const date = new Date(caseItem.createdAt.toMillis()).toLocaleString();
-  const linkPath = caseItem.type === 'diagnosis' ? '/' : '/content-generator';
+  const linkPath = caseItem.type === 'diagnosis' ? '/ai-diagnosis' : '/content-generator';
 
   return (
-    <Card className="transition-all hover:shadow-md">
+    <Card className="border shadow-sm transition-all hover:shadow-md">
       <CardHeader>
         <div className="flex justify-between items-start gap-4">
           <div className="flex-grow">
