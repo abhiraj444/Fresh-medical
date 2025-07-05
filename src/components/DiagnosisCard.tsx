@@ -62,7 +62,7 @@ export function DiagnosisCard({ diagnosis }: DiagnosisCardProps) {
                             <p className="text-sm text-muted-foreground">{diagnosis.reasoning}</p>
                         </div>
                         {hasMissingInfo && (
-                            <div className="rounded-md border border-border bg-muted/50 p-4">
+                            <div className="rounded-md border border-border bg-reasoning text-reasoning-foreground p-4">
                                 {diagnosis.missingInformation?.information && diagnosis.missingInformation.information.length > 0 && (
                                     <div className="mb-4">
                                         <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">

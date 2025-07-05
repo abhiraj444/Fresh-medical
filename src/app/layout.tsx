@@ -24,13 +24,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-body antialiased',
+          'min-h-screen font-body antialiased',
           inter.variable
         )}
       >
         <ThemeProvider>
           <AuthProvider>
-              <div className="relative flex min-h-screen flex-col">
+              <div className="relative flex min-h-screen flex-col bg-background text-foreground">
               <Header />
               <main className="flex-1">{children}</main>
               </div>

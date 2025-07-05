@@ -32,10 +32,19 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --question: 210 20% 95%; /* Light blue-gray for question */
+    --question-foreground: 210 20% 20%;
+    --answer: 120 20% 95%; /* Light green-gray for answer */
+    --answer-foreground: 120 20% 20%;
+    --diagnosis: 270 20% 95%; /* Light purple-gray for diagnosis */
+    --diagnosis-foreground: 270 20% 20%;
+    --reasoning: 30 20% 95%; /* Light orange-gray for reasoning */
+    --reasoning-foreground: 30 20% 20%;
     --radius: 0.5rem;
   }
 
   .dark {
+    color-scheme: dark;
     --background: 210 20% 17%; /* #1E293B - Very dark slate or blue-gray */
     --foreground: 210 20% 96%; /* #F1F5F9 - Light gray-white */
     --card: 210 20% 17%;
@@ -60,6 +69,14 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --question: 210 40% 25%; /* Deeper Blue-Gray */
+    --question-foreground: 210 40% 90%;
+    --answer: 140 40% 25%; /* Deeper Green */
+    --answer-foreground: 140 40% 90%;
+    --diagnosis: 270 40% 25%; /* Deeper Purple */
+    --diagnosis-foreground: 270 40% 90%;
+    --reasoning: 40 40% 25%; /* Deeper Gold/Yellow */
+    --reasoning-foreground: 40 40% 90%;
   }
 }
 

@@ -70,6 +70,22 @@ export default {
           border: 'var(--sidebar-border)',
           ring: 'var(--sidebar-ring)',
         },
+        question: {
+          DEFAULT: 'var(--question)',
+          foreground: 'var(--question-foreground)',
+        },
+        answer: {
+          DEFAULT: 'var(--answer)',
+          foreground: 'var(--answer-foreground)',
+        },
+        diagnosis: {
+          DEFAULT: 'var(--diagnosis)',
+          foreground: 'var(--diagnosis-foreground)',
+        },
+        reasoning: {
+          DEFAULT: 'var(--reasoning)',
+          foreground: 'var(--reasoning-foreground)',
+        },
       },
       borderRadius: {
         lg: 'calc(var(--radius) - 0px)',

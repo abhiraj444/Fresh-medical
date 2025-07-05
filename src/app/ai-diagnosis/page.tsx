@@ -377,7 +377,7 @@ export default function AiDiagnosisPage() {
                                       </div>
                                   </AccordionTrigger>
                                   <AccordionContent>
-                                      <div className="mt-2 rounded-md border border-border bg-muted/50 p-4">
+                                      <div className="mt-2 rounded-md border border-border bg-reasoning text-reasoning-foreground p-4">
                                           <div className="flex items-start justify-between">
                                               <h4 className="font-semibold text-foreground mb-2 flex-grow">
                                                   Reasoning
