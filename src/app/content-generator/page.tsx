@@ -339,11 +339,11 @@ export default function ContentGeneratorPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 pt-8 pb-4">
+    <div className="container mx-auto max-4xl px-4 pt-8 pb-4" data-section="content-generator">
       
       <div className="space-y-8">
         {!result && !isLoading && (
-            <Card className="border shadow-sm">
+            <Card className="border shadow-sm bg-content-generator-content-input text-content-generator-content-input-foreground">
                 <CardHeader>
                     <CardTitle>Content Generator</CardTitle>
                     <CardDescription>
@@ -460,7 +460,7 @@ export default function ContentGeneratorPage() {
         )}
 
         {result && (
-          <Card className="border shadow-sm">
+          <Card className="border shadow-sm bg-content-generator-content-output text-content-generator-content-output-foreground">
              <CardHeader>
               <div className="flex w-full items-start justify-between gap-4">
                 <div className="flex-grow">
@@ -509,7 +509,7 @@ export default function ContentGeneratorPage() {
                                             <Copy className="h-4 w-4" />
                                         </Button>
                                     </div>
-                                    <div className="prose prose-sm prose-invert max-w-none text-amber-700 dark:text-amber-300" dangerouslySetInnerHTML={{__html: formatText(result.reasoning)}}></div>
+                                    <div className="prose prose-sm prose-invert max-w-none text-analysis-foreground" dangerouslySetInnerHTML={{__html: formatText(result.reasoning)}}></div>
                                 </div>
                             </AccordionContent>
                         </AccordionItem>

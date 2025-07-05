@@ -15,7 +15,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4">
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center p-4" data-section="homepage">
       <div className="mx-auto grid w-full max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <Card
           className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
@@ -52,7 +52,7 @@ export default function HomePage() {
         </Card>
 
         <Card
-          className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+          className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-lg bg-homepage-card text-homepage-card-foreground"
           onClick={() => handleNavigate(user ? '/history' : '/login')}
         >
           <CardHeader>

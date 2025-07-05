@@ -54,8 +54,8 @@ export default function HistoryPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-4xl px-4 py-8">
-      <Card className="border shadow-sm">
+    <div className="container mx-auto max-w-4xl px-4 py-8" data-section="history">
+      <Card className="border shadow-sm bg-history-card text-history-card-foreground">
         <CardHeader>
           <CardTitle>Case History</CardTitle>
         </CardHeader>

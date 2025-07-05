@@ -1,0 +1,84 @@
+✅ Summary of What You're Doing Correctly
+✅ You’re using data-section="ai-diagnosis" etc. for scoping custom CSS variables per section — this is a great strategy.
+
+✅ You have light and dark mode overrides properly defined in your CSS (globals.css).
+
+✅ You defined variables like --analysis-background and --analysis-foreground, and you are referencing them in classes like bg-ai-diagnosis-analysis.
+
+❌ Core Issue: Tailwind Can’t See Your CSS Variable Tokens
+In your component, you’re using classes like:
+
+tsx
+Copy
+Edit
+bg-ai-diagnosis-analysis text-ai-diagnosis-analysis-foreground
+But Tailwind does not know about bg-ai-diagnosis-analysis unless you define it in your tailwind.config.js under the theme.extend.colors.
+
+✅ Fix: Extend Tailwind's Theme with CSS Variable References
+Update your tailwind.config.js like this:
+
+ts
+Copy
+Edit
+// tailwind.config.ts or tailwind.config.js
+const { fontFamily } = require("tailwindcss/defaultTheme");
+
+module.exports = {
+  darkMode: 'class',
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+
+        // ✳️ Custom Section Colors (MUST include these)
+        'ai-diagnosis-input-section': 'hsl(var(--input-section-background))',
+        'ai-diagnosis-input-section-foreground': 'hsl(var(--input-section-foreground))',
+        'ai-diagnosis-answer-display': 'hsl(var(--answer-display-background))',
+        'ai-diagnosis-answer-display-foreground': 'hsl(var(--answer-display-foreground))',
+        'ai-diagnosis-analysis': 'hsl(var(--analysis-background))',
+        'ai-diagnosis-analysis-foreground': 'hsl(var(--analysis-foreground))',
+
+        // Add other sections if needed
+        'homepage-card-background': 'hsl(var(--homepage-card-background))',
+        'homepage-card-foreground': 'hsl(var(--homepage-card-foreground))',
+      },
+      fontFamily: {
+        body: ['Inter', ...fontFamily.sans],
+      },
+    },
+  },
+  plugins: [require('@tailwindcss/typography')],
+};
+✅ Bonus: Automatically Scope Themes Using data-section
+This is already working in your code:
+
+tsx
+Copy
+Edit
+<div className="container ..." data-section="ai-diagnosis">
+So the variables like --analysis-background will be scoped only to this area. You're using it correctly.
+
+✅ Check for These Mistakes
+Problem	Fix
+You applied class bg-ai-diagnosis-analysis but Tailwind doesn’t recognize it	Extend Tailwind's theme.colors with the hsl(var(--...)) version
+You expect variable changes but don't wrap each section with data-section="..."	Ensure every themed section is wrapped properly
+Custom theme looks fine in dev but missing in production	Make sure the class names are not dynamic strings, or safelist them in Tailwind purge config
+
+✅ Final Tip: Add Debug Visuals Temporarily
+To debug which colors are actually applying, add:
+
+css
+Copy
+Edit
+.outline-debug {
+  outline: 2px solid red;
+}
+Then apply it to components that should be themed and see if background/foreground updates accordingly.

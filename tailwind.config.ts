@@ -1,120 +1,71 @@
-import type {Config} from 'tailwindcss';
+import { type Config } from 'tailwindcss';
+import { fontFamily } from 'tailwindcss/defaultTheme';
 
-export default {
-  darkMode: ['class'],
+const config: Config = {
+  darkMode: 'class', // Required for `dark:` prefix strategy
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
+    './src/**/*.{js,ts,jsx,tsx}', // if you use src directory
   ],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px',
-      },
-    },
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
+        body: ['Inter', ...fontFamily.sans],
       },
       colors: {
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
-        card: {
-          DEFAULT: 'var(--card)',
-          foreground: 'var(--card-foreground)',
-        },
-        popover: {
-          DEFAULT: 'var(--popover)',
-          foreground: 'var(--popover-foreground)',
-        },
-        primary: {
-          DEFAULT: 'var(--primary)',
-          foreground: 'var(--primary-foreground)',
-        },
-        secondary: {
-          DEFAULT: 'var(--secondary)',
-          foreground: 'var(--secondary-foreground)',
-        },
-        muted: {
-          DEFAULT: 'var(--muted)',
-          foreground: 'var(--muted-foreground)',
-        },
-        accent: {
-          DEFAULT: 'var(--accent)',
-          foreground: 'var(--accent-foreground)',
-        },
-        destructive: {
-          DEFAULT: 'var(--destructive)',
-          foreground: 'var(--destructive-foreground)',
-        },
-        border: 'var(--border)',
-        input: 'var(--input)',
-        ring: 'var(--ring)',
-        chart: {
-          '1': 'var(--chart-1)',
-          '2': 'var(--chart-2)',
-          '3': 'var(--chart-3)',
-          '4': 'var(--chart-4)',
-          '5': 'var(--chart-5)',
-        },
-        sidebar: {
-          DEFAULT: 'var(--sidebar-background)',
-          foreground: 'var(--sidebar-foreground)',
-          primary: 'var(--sidebar-primary)',
-          'primary-foreground': 'var(--sidebar-primary-foreground)',
-          accent: 'var(--sidebar-accent)',
-          'accent-foreground': 'var(--sidebar-accent-foreground)',
-          border: 'var(--sidebar-border)',
-          ring: 'var(--sidebar-ring)',
-        },
-        question: {
-          DEFAULT: 'var(--question)',
-          foreground: 'var(--question-foreground)',
-        },
-        answer: {
-          DEFAULT: 'var(--answer)',
-          foreground: 'var(--answer-foreground)',
-        },
-        diagnosis: {
-          DEFAULT: 'var(--diagnosis)',
-          foreground: 'var(--diagnosis-foreground)',
-        },
-        reasoning: {
-          DEFAULT: 'var(--reasoning)',
-          foreground: 'var(--reasoning-foreground)',
-        },
+        // 🌐 Global Theme Colors (already set in CSS vars)
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        primary: 'hsl(var(--primary))',
+        'primary-foreground': 'hsl(var(--primary-foreground))',
+        destructive: 'hsl(var(--destructive))',
+        'destructive-foreground': 'hsl(var(--destructive-foreground))',
+
+        // 🩺 AI Diagnosis Section
+        'ai-diagnosis-input-section': 'hsl(var(--input-section-background))',
+        'ai-diagnosis-input-section-foreground': 'hsl(var(--input-section-foreground))',
+        'ai-diagnosis-answer-display': 'hsl(var(--answer-display-background))',
+        'ai-diagnosis-answer-display-foreground': 'hsl(var(--answer-display-foreground))',
+        'ai-diagnosis-analysis': 'hsl(var(--analysis-background))',
+        'ai-diagnosis-analysis-foreground': 'hsl(var(--analysis-foreground))',
+        'ai-diagnosis-diagnosis-card': 'hsl(var(--diagnosis-card-background))',
+        'ai-diagnosis-diagnosis-card-foreground': 'hsl(var(--diagnosis-card-foreground))',
+
+        // 📄 Content Generator Section
+        'content-input-background': 'hsl(var(--content-input-background))',
+        'content-input-foreground': 'hsl(var(--content-input-foreground))',
+        'content-output-background': 'hsl(var(--content-output-background))',
+        'content-output-foreground': 'hsl(var(--content-output-foreground))',
+
+        // 🏠 Homepage
+        'homepage-card-background': 'hsl(var(--homepage-card-background))',
+        'homepage-card-foreground': 'hsl(var(--homepage-card-foreground))',
+
+        // 📜 History
+        'history-background': 'hsl(var(--history-background))',
+        'history-card-background': 'hsl(var(--history-card-background))',
+        'history-card-foreground': 'hsl(var(--history-card-foreground))',
+
+        // 🔐 Login
+        'login-background': 'hsl(var(--login-background))',
+        'login-card-background': 'hsl(var(--login-card-background))',
+        'login-card-foreground': 'hsl(var(--login-card-foreground))',
       },
       borderRadius: {
-        lg: 'calc(var(--radius) - 0px)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      keyframes: {
-        'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-        },
-        'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+        DEFAULT: 'var(--radius)',
+        lg: 'calc(var(--radius) + 2px)',
+        xl: 'calc(var(--radius) + 4px)',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
-} satisfies Config;
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
+};
+export default config;

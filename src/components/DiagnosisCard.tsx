@@ -31,7 +31,7 @@ export function DiagnosisCard({ diagnosis }: DiagnosisCardProps) {
     (diagnosis.missingInformation?.tests && diagnosis.missingInformation.tests.length > 0);
 
   return (
-    <Card className="overflow-hidden border shadow-sm hover:shadow-md transition-all">
+    <Card className="overflow-hidden border shadow-sm hover:shadow-md transition-all bg-diagnosis-card-background text-diagnosis-card-foreground">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <CardTitle>{diagnosis.diagnosis}</CardTitle>

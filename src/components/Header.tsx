@@ -169,7 +169,7 @@ export default function Header() {
               <SheetClose asChild>
                 <Link href="/" className="flex items-center gap-2 mb-6">
                   <BrainCircuit className="h-7 w-7 text-primary" />
-                  <span className="text-xl font-bold text-foreground">MediGen</span>
+                  <span className="text-xl font-bold text-header-foreground">MediGen</span>
                 </Link>
               </SheetClose>
               <nav className="flex flex-col gap-4 hidden md:flex">

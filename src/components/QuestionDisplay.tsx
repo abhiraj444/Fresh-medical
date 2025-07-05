@@ -48,7 +48,7 @@ export function QuestionDisplay({ summary, images }: QuestionDisplayProps) {
   }
   
   return (
-    <Card className="border shadow-sm mb-6 bg-question text-question-foreground">
+    <Card className="border shadow-sm mb-6 bg-question-display-background text-question-display-foreground">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <FileQuestion className="text-primary" />

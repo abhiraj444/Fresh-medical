@@ -8,23 +8,25 @@ body {
 
 @layer base {
   :root {
-    --background: 210 20% 97%; /* #F5F7FA - Soft blue-gray */
-    --foreground: 210 20% 17%; /* #1F2937 - Dark navy */
+    color-scheme: light;
+    /* Base Colors (existing) */
+    --background: 210 20% 97%; /* Soft blue-gray */
+    --foreground: 210 20% 17%; /* Dark navy */
     --card: 0 0% 100%;
     --card-foreground: 210 20% 17%;
     --popover: 0 0% 100%;
     --popover-foreground: 210 20% 17%;
-    --primary: 210 90% 45%;
+    --primary: 210 90% 45%; /* Blue */
     --primary-foreground: 0 0% 100%;
     --secondary: 210 20% 97%;
     --secondary-foreground: 210 20% 17%;
     --muted: 210 15% 92%;
     --muted-foreground: 210 10% 45%;
-    --accent: 200 90% 94%; /* #E0F2FE - Light blue accent */
+    --accent: 200 90% 94%; /* Light blue accent */
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 210 20% 90%; /* #D9E2EC - Muted gray */
+    --border: 210 20% 90%; /* Muted gray */
     --input: 210 10% 90%;
     --ring: 210 90% 45%;
     --chart-1: 12 76% 61%;
@@ -32,15 +34,106 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --question: 210 20% 95%; /* Light blue-gray for question */
-    --question-foreground: 210 20% 20%;
-    --answer: 120 20% 95%; /* Light green-gray for answer */
-    --answer-foreground: 120 20% 20%;
-    --diagnosis: 270 20% 95%; /* Light purple-gray for diagnosis */
-    --diagnosis-foreground: 270 20% 20%;
-    --reasoning: 30 20% 95%; /* Light orange-gray for reasoning */
-    --reasoning-foreground: 30 20% 20%;
     --radius: 0.5rem;
+
+    /* Header */
+    --header-background: 0 0% 100%; /* White */
+    --header-foreground: 210 20% 17%; /* Dark navy */
+
+    }
+
+  [data-section="homepage"] {
+    --homepage-background: var(--background);
+    --homepage-foreground: var(--foreground);
+    --homepage-card-background: 0 0% 100%; /* White, same as general card */
+    --homepage-card-foreground: 210 20% 17%;
+  }
+
+  .dark [data-section="homepage"] {
+    --homepage-background: var(--background);
+    --homepage-foreground: var(--foreground);
+    --homepage-card-background: 210 20% 17%;
+    --homepage-card-foreground: 210 20% 96%;
+
+    }
+
+  [data-section="ai-diagnosis"] {
+    --ai-diagnosis-background: var(--background);
+    --ai-diagnosis-foreground: var(--foreground);
+    --input-section-background: 210 30% 98%; /* Very light blue-gray */
+    --input-section-foreground: 210 20% 17%;
+    --question-display-background: 200 60% 96%; /* Light Sky Blue */
+    --question-display-foreground: 210 20% 17%;
+    --answer-display-background: 120 40% 96%; /* Light Mint Green */
+    --answer-display-foreground: 210 20% 17%;
+    --analysis-background: 40 60% 96%; /* Light Peach/Gold */
+    --analysis-foreground: 210 20% 17%;
+    --diagnosis-card-background: 270 40% 96%; /* Light Lavender */
+    --diagnosis-card-foreground: 210 20% 17%;
+  }
+
+  .dark [data-section="ai-diagnosis"] {
+    --ai-diagnosis-background: var(--background);
+    --ai-diagnosis-foreground: var(--foreground);
+    --input-section-background: 210 20% 20%;
+    --input-section-foreground: 210 20% 90%;
+    --question-display-background: 200 60% 20%;
+    --question-display-foreground: 210 20% 90%;
+    --answer-display-background: 120 40% 20%;
+    --answer-display-foreground: 210 20% 90%;
+    --analysis-background: 40 60% 20%;
+    --analysis-foreground: 210 20% 90%;
+    --diagnosis-card-background: 270 40% 20%;
+    --diagnosis-card-foreground: 210 20% 90%;
+
+    }
+
+  [data-section="content-generator"] {
+    --content-generator-background: var(--background);
+    --content-generator-foreground: var(--foreground);
+    --content-input-background: 250 30% 98%; /* Very light purple-gray */
+    --content-input-foreground: 210 20% 17%;
+    --content-output-background: 300 60% 96%; /* Light Rose */
+    --content-output-foreground: 210 20% 17%;
+  }
+
+  .dark [data-section="content-generator"] {
+    --content-generator-background: var(--background);
+    --content-generator-foreground: var(--foreground);
+    --content-input-background: 250 30% 20%;
+    --content-input-foreground: 210 20% 90%;
+    --content-output-background: 300 60% 20%;
+    --content-output-foreground: 210 20% 90%;
+
+    }
+
+  [data-section="history"] {
+    --history-background: 210 20% 95%; /* Slightly darker than base background */
+    --history-foreground: var(--foreground);
+    --history-card-background: 0 0% 100%; /* White */
+    --history-card-foreground: 210 20% 17%;
+  }
+
+  .dark [data-section="history"] {
+    --history-background: 210 20% 20%;
+    --history-foreground: var(--foreground);
+    --history-card-background: 210 20% 17%;
+    --history-card-foreground: 210 20% 96%;
+
+    }
+
+  [data-section="login"] {
+    --login-background: var(--background);
+    --login-foreground: var(--foreground);
+    --login-card-background: 0 0% 100%; /* White */
+    --login-card-foreground: 210 20% 17%;
+  }
+
+  .dark [data-section="login"] {
+    --login-background: var(--background);
+    --login-foreground: var(--foreground);
+    --login-card-background: 210 20% 17%;
+    --login-card-foreground: 210 20% 96%;
   }
 
   .dark {

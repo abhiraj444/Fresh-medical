@@ -232,7 +232,7 @@ export default function AiDiagnosisPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8">
+    <div className="container mx-auto max-w-7xl px-4 py-8" data-section="ai-diagnosis">
       
       <div className="flex justify-end mb-4">
         {(results || clinicalAnswer) && (
@@ -243,7 +243,7 @@ export default function AiDiagnosisPage() {
         )}
       </div>
         {!results && !clinicalAnswer && !isLoading && (
-          <Card className="shadow-lg max-w-2xl mx-auto">
+          <Card className="shadow-lg max-w-2xl mx-auto bg-ai-diagnosis-input-section text-ai-diagnosis-input-section-foreground">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="text-primary" />
@@ -348,7 +348,7 @@ export default function AiDiagnosisPage() {
               <QuestionDisplay summary={structuredQuestion.summary} images={structuredQuestion.images} />
             )}
             {clinicalAnswer && clinicalAnswer.answer && (
-              <Card className="border shadow-sm">
+              <Card className="border shadow-sm bg-ai-diagnosis-answer-display text-ai-diagnosis-answer-display-foreground">
                   <CardHeader>
                       <div className="flex w-full items-start justify-between gap-4">
                           <div className="flex-grow">
@@ -377,7 +377,7 @@ export default function AiDiagnosisPage() {
                                       </div>
                                   </AccordionTrigger>
                                   <AccordionContent>
-                                      <div className="mt-2 rounded-md border border-border bg-reasoning text-reasoning-foreground p-4">
+                                      <div className="mt-2 rounded-md border border-border bg-ai-diagnosis-analysis text-ai-diagnosis-analysis-foreground p-4">
                                           <div className="flex items-start justify-between">
                                               <h4 className="font-semibold text-foreground mb-2 flex-grow">
                                                   Reasoning

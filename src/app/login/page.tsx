@@ -95,14 +95,14 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center">
+    <div className="container flex min-h-[calc(100vh-8rem)] items-center justify-center" data-section="login">
       <Tabs defaultValue="login" className="w-full max-w-sm">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="login">Login</TabsTrigger>
           <TabsTrigger value="signup">Sign Up</TabsTrigger>
         </TabsList>
         <TabsContent value="login">
-          <Card className="border shadow-sm">
+          <Card className="border shadow-sm bg-login-card text-login-card-foreground">
             <CardHeader>
               <CardTitle>Login</CardTitle>
               <CardDescription>
@@ -149,7 +149,7 @@ export default function LoginPage() {
           </Card>
         </TabsContent>
         <TabsContent value="signup">
-          <Card className="border shadow-sm">
+          <Card className="border shadow-sm bg-login-card text-login-card-foreground">
             <CardHeader>
               <CardTitle>Sign Up</CardTitle>
               <CardDescription>
