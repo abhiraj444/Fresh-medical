@@ -154,25 +154,25 @@ export interface ThemeColors {
 export const themeColors: ThemeColors = {
   light: {
     global: {
-      background: '210 20% 97%', // Soft blue-gray
-      foreground: '210 20% 17%', // Dark navy
+      background: '0 0% 95%', // Light gray background
+      foreground: '0 0% 10%', // Very dark gray/black for text
       card: '0 0% 100%',
-      'card-foreground': '210 20% 17%',
+      'card-foreground': '0 0% 10%',
       popover: '0 0% 100%',
-      'popover-foreground': '210 20% 17%',
-      primary: '210 90% 45%', // Blue
-      'primary-foreground': '0 0% 100%',
-      secondary: '210 20% 97%',
-      'secondary-foreground': '210 20% 17%',
-      muted: '210 15% 92%',
-      'muted-foreground': '210 10% 45%',
-      accent: '200 90% 94%', // Light blue accent
-      'accent-foreground': '0 0% 100%',
-      destructive: '0 84.2% 60.2%',
-      'destructive-foreground': '0 0% 98%',
-      border: '210 20% 90%', // Muted gray
-      input: '210 10% 90%',
-      ring: '210 90% 45%',
+      'popover-foreground': '0 0% 10%',
+      primary: '0 0% 20%', // Dark gray for primary elements
+      'primary-foreground': '0 0% 100%', // White text on primary
+      secondary: '0 0% 90%', // Slightly darker gray for secondary
+      'secondary-foreground': '0 0% 15%', // Darker gray for secondary text
+      muted: '0 0% 85%', // Muted gray
+      'muted-foreground': '0 0% 30%', // Darker muted text
+      accent: '0 0% 80%', // Accent gray
+      'accent-foreground': '0 0% 10%', // Dark accent text
+      destructive: '0 84.2% 60.2%', // Red for destructive actions
+      'destructive-foreground': '0 0% 98%', // White text on destructive
+      border: '0 0% 75%', // Light gray border
+      input: '0 0% 90%', // Light gray input background
+      ring: '0 0% 20%', // Dark gray ring
       'chart-1': '12 76% 61%',
       'chart-2': '173 58% 39%',
       'chart-3': '197 37% 24%',
@@ -181,125 +181,125 @@ export const themeColors: ThemeColors = {
       radius: '0.5rem',
     },
     header: {
-      background: '0 0% 100%', // White
-      foreground: '210 20% 17%', // Dark navy
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
     },
     homepage: {
-      background: '210 20% 97%',
-      foreground: '210 20% 17%',
-      'card-background': '0 0% 100%', // White, same as general card
-      'card-foreground': '210 20% 17%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'card-background': 'var(--card)',
+      'card-foreground': 'var(--card-foreground)',
     },
     aiDiagnosis: {
-      background: '210 20% 97%',
-      foreground: '210 20% 17%',
-      'input-section-background': '210 30% 98%', // Very light blue-gray
-      'input-section-foreground': '210 20% 17%',
-      'question-display-background': '200 60% 96%', // Light Sky Blue
-      'question-display-foreground': '210 20% 17%',
-      'answer-display-background': '120 40% 96%', // Light Mint Green
-      'answer-display-foreground': '210 20% 17%',
-      'analysis-background': '40 60% 96%', // Light Peach/Gold
-      'analysis-foreground': '210 20% 17%',
-      'diagnosis-card-background': '270 40% 96%', // Light Lavender
-      'diagnosis-card-foreground': '210 20% 17%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'input-section-background': 'var(--secondary)',
+      'input-section-foreground': 'var(--secondary-foreground)',
+      'question-display-background': 'var(--muted)',
+      'question-display-foreground': 'var(--muted-foreground)',
+      'answer-display-background': 'var(--muted)',
+      'answer-display-foreground': 'var(--muted-foreground)',
+      'analysis-background': 'var(--muted)',
+      'analysis-foreground': 'var(--muted-foreground)',
+      'diagnosis-card-background': 'var(--card)',
+      'diagnosis-card-foreground': 'var(--card-foreground)',
     },
     contentGenerator: {
-      background: '210 20% 97%',
-      foreground: '210 20% 17%',
-      'input-background': '250 30% 98%', // Very light purple-gray
-      'input-foreground': '210 20% 17%',
-      'output-background': '300 60% 96%', // Light Rose
-      'output-foreground': '210 20% 17%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'input-background': 'var(--accent)',
+      'input-foreground': 'var(--accent-foreground)',
+      'output-background': 'var(--accent)',
+      'output-foreground': 'var(--accent-foreground)',
     },
     history: {
-      background: '210 20% 95%', // Slightly darker than base background
-      foreground: '210 20% 17%',
-      'card-background': '0 0% 100%', // White
-      'card-foreground': '210 20% 17%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'card-background': 'var(--card)',
+      'card-foreground': 'var(--card-foreground)',
     },
     login: {
-      background: '210 20% 97%',
-      foreground: '210 20% 17%',
-      'card-background': '0 0% 100%', // White
-      'card-foreground': '210 20% 17%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'card-background': 'var(--card)',
+      'card-foreground': 'var(--card-foreground)',
     },
   },
   dark: {
     global: {
-      background: '210 20% 17%', // #1E293B - Very dark slate or blue-gray
-      foreground: '210 20% 96%', // #F1F5F9 - Light gray-white
-      card: '210 20% 17%',
-      'card-foreground': '210 20% 96%',
+      background: '0 0% 15%', // Dark gray background
+      foreground: '0 0% 90%', // Light gray for text
+      card: '0 0% 10%',
+      'card-foreground': '0 0% 90%',
       radius: '0.5rem',
-      popover: '210 20% 17%',
-      'popover-foreground': '210 20% 96%',
-      primary: '210 90% 60%',
-      'primary-foreground': '222 47% 11%',
-      secondary: '217 30% 20%',
-      'secondary-foreground': '210 20% 96%',
-      muted: '217 25% 25%',
-      'muted-foreground': '215 25% 65%',
-      accent: '170 60% 50%', // #2DD4BF - Dim teal
-      'accent-foreground': '0 0% 98%',
-      destructive: '0 62.8% 30.6%',
-      'destructive-foreground': '0 0% 98%',
-      border: '210 20% 26%', // #334155 - Slightly lighter slate
-      input: '217 25% 25%',
-      ring: '210 90% 60%',
+      popover: '0 0% 10%',
+      'popover-foreground': '0 0% 90%',
+      primary: '0 0% 80%', // Light gray for primary elements
+      'primary-foreground': '0 0% 10%', // Dark text on primary
+      secondary: '0 0% 20%', // Slightly lighter gray for secondary
+      'secondary-foreground': '0 0% 85%', // Lighter gray for secondary text
+      muted: '0 0% 25%', // Muted dark gray
+      'muted-foreground': '0 0% 70%', // Lighter muted text
+      accent: '0 0% 30%', // Accent dark gray
+      'accent-foreground': '0 0% 90%', // Light accent text
+      destructive: '0 62.8% 30.6%', // Red for destructive actions
+      'destructive-foreground': '0 0% 98%', // White text on destructive
+      border: '0 0% 40%', // Dark gray border
+      input: '0 0% 25%', // Dark gray input background
+      ring: '0 0% 80%', // Light gray ring
       'chart-1': '220 70% 50%',
       'chart-2': '160 60% 45%',
       'chart-3': '30 80% 55%',
       'chart-4': '280 65% 60%',
       'chart-5': '340 75% 55%',
-      question: '210 40% 25%', // Deeper Blue-Gray
-      'question-foreground': '210 40% 90%',
-      answer: '140 40% 25%', // Deeper Green
-      'answer-foreground': '140 40% 90%',
-      diagnosis: '270 40% 25%', // Deeper Purple
-      'diagnosis-foreground': '270 40% 90%',
-      reasoning: '40 40% 25%', // Deeper Gold/Yellow
-      'reasoning-foreground': '40 40% 90%',
+      question: '0 0% 90%', // Light gray
+      'question-foreground': '0 0% 90%',
+      answer: '0 0% 90%', // Light gray
+      'answer-foreground': '0 0% 90%',
+      diagnosis: '0 0% 90%', // Light gray
+      'diagnosis-foreground': '0 0% 90%',
+      reasoning: '0 0% 90%', // Light gray
+      'reasoning-foreground': '0 0% 90%',
     },
     homepage: {
-      background: '210 20% 17%',
-      foreground: '210 20% 96%',
-      'card-background': '210 20% 17%',
-      'card-foreground': '210 20% 96%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'card-background': 'var(--card)',
+      'card-foreground': 'var(--card-foreground)',
     },
     aiDiagnosis: {
-      background: '210 20% 17%',
-      foreground: '210 20% 96%',
-      'input-section-background': '210 20% 20%',
-      'input-section-foreground': '210 20% 90%',
-      'question-display-background': '200 60% 20%',
-      'question-display-foreground': '210 20% 90%',
-      'answer-display-background': '120 40% 20%',
-      'answer-display-foreground': '210 20% 90%',
-      'analysis-background': '40 60% 20%',
-      'analysis-foreground': '210 20% 90%',
-      'diagnosis-card-background': '270 40% 20%',
-      'diagnosis-card-foreground': '210 20% 90%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'input-section-background': 'var(--secondary)',
+      'input-section-foreground': 'var(--secondary-foreground)',
+      'question-display-background': 'var(--muted)',
+      'question-display-foreground': 'var(--accent-foreground)',
+      'answer-display-background': 'var(--accent)',
+      'answer-display-foreground': 'var(--accent-foreground)',
+      'analysis-background': 'var(--muted)',
+      'analysis-foreground': 'var(--accent-foreground)',
+      'diagnosis-card-background': 'var(--card)',
+      'diagnosis-card-foreground': 'var(--card-foreground)',
     },
     contentGenerator: {
-      background: '210 20% 17%',
-      foreground: '210 20% 96%',
-      'input-background': '250 30% 20%',
-      'input-foreground': '210 20% 90%',
-      'output-background': '300 60% 20%',
-      'output-foreground': '210 20% 90%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'input-background': 'var(--accent)',
+      'input-foreground': 'var(--accent-foreground)',
+      'output-background': 'var(--accent)',
+      'output-foreground': 'var(--accent-foreground)',
     },
     history: {
-      background: '210 20% 20%',
-      foreground: '210 20% 96%',
-      'card-background': '210 20% 17%',
-      'card-foreground': '210 20% 96%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'card-background': 'var(--card)',
+      'card-foreground': 'var(--card-foreground)',
     },
     login: {
-      background: '210 20% 17%',
-      foreground: '210 20% 96%',
-      'card-background': '210 20% 17%',
-      'card-foreground': '210 20% 96%',
+      background: 'var(--background)',
+      foreground: 'var(--foreground)',
+      'card-background': 'var(--card)',
+      'card-foreground': 'var(--card-foreground)',
     },
   },
 };

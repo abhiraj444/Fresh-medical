@@ -9,163 +9,16 @@ body {
 @layer base {
   :root {
     color-scheme: light;
-    /* Global Colors */
-    --background: 210 20% 97%;
-    --foreground: 210 20% 17%;
-    --card: 0 0% 100%;
-    --card-foreground: 210 20% 17%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 17%;
-    --primary: 210 90% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 97%;
-    --secondary-foreground: 210 20% 17%;
-    --muted: 210 15% 92%;
-    --muted-foreground: 210 10% 45%;
-    --accent: 200 90% 94%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 20% 90%;
-    --input: 210 10% 90%;
-    --ring: 210 90% 45%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
-
-    /* Header */
-    --header-background: 0 0% 100%;
-    --header-foreground: 210 20% 17%;
-  }
-
-  [data-section="homepage"] {
-    --homepage-background: 210 20% 97%;
-    --homepage-foreground: 210 20% 17%;
-    --homepage-card-background: 0 0% 100%;
-    --homepage-card-foreground: 210 20% 17%;
-  }
-
-  [data-section="ai-diagnosis"] {
-    --ai-diagnosis-background: 210 20% 97%;
-    --ai-diagnosis-foreground: 210 20% 17%;
-    --input-section-background: 210 30% 98%;
-    --input-section-foreground: 210 20% 17%;
-    --question-display-background: 200 60% 96%;
-    --question-display-foreground: 210 20% 17%;
-    --answer-display-background: 120 40% 96%;
-    --answer-display-foreground: 210 20% 17%;
-    --analysis-background: 40 60% 96%;
-    --analysis-foreground: 210 20% 17%;
-    --diagnosis-card-background: 270 40% 96%;
-    --diagnosis-card-foreground: 210 20% 17%;
-  }
-
-  [data-section="content-generator"] {
-    --content-generator-background: 210 20% 97%;
-    --content-generator-foreground: 210 20% 17%;
-    --content-input-background: 250 30% 98%;
-    --content-input-foreground: 210 20% 17%;
-    --content-output-background: 300 60% 96%;
-    --content-output-foreground: 210 20% 17%;
-  }
-
-  [data-section="history"] {
-    --history-background: 210 20% 95%;
-    --history-foreground: 210 20% 17%;
-    --history-card-background: 0 0% 100%;
-    --history-card-foreground: 210 20% 17%;
-  }
-
-  [data-section="login"] {
-    --login-background: 210 20% 97%;
-    --login-foreground: 210 20% 17%;
-    --login-card-background: 0 0% 100%;
-    --login-card-foreground: 210 20% 17%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+    --primary: 221.2 83.2% 53.3%;
   }
 
   .dark {
     color-scheme: dark;
-    /* Global Colors */
-    --background: 210 20% 17%;
-    --foreground: 210 20% 96%;
-    --card: 210 20% 17%;
-    --card-foreground: 210 20% 96%;
-    --popover: 210 20% 17%;
-    --popover-foreground: 210 20% 96%;
-    --primary: 210 90% 60%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 30% 20%;
-    --secondary-foreground: 210 20% 96%;
-    --muted: 217 25% 25%;
-    --muted-foreground: 215 25% 65%;
-    --accent: 170 60% 50%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 210 20% 26%;
-    --input: 217 25% 25%;
-    --ring: 210 90% 60%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --question: 210 40% 25%;
-    --question-foreground: 210 40% 90%;
-    --answer: 140 40% 25%;
-    --answer-foreground: 140 40% 90%;
-    --diagnosis: 270 40% 25%;
-    --diagnosis-foreground: 270 40% 90%;
-    --reasoning: 40 40% 25%;
-    --reasoning-foreground: 40 40% 90%;
-  }
-
-  .dark [data-section="homepage"] {
-    --homepage-background: 210 20% 17%;
-    --homepage-foreground: 210 20% 96%;
-    --homepage-card-background: 210 20% 17%;
-    --homepage-card-foreground: 210 20% 96%;
-  }
-
-  .dark [data-section="ai-diagnosis"] {
-    --ai-diagnosis-background: 210 20% 17%;
-    --ai-diagnosis-foreground: 210 20% 96%;
-    --input-section-background: 210 20% 20%;
-    --input-section-foreground: 210 20% 90%;
-    --question-display-background: 200 60% 20%;
-    --question-display-foreground: 210 20% 90%;
-    --answer-display-background: 120 40% 20%;
-    --answer-display-foreground: 210 20% 90%;
-    --analysis-background: 40 60% 20%;
-    --analysis-foreground: 210 20% 90%;
-    --diagnosis-card-background: 270 40% 20%;
-    --diagnosis-card-foreground: 210 20% 90%;
-  }
-
-  .dark [data-section="content-generator"] {
-    --content-generator-background: 210 20% 17%;
-    --content-generator-foreground: 210 20% 96%;
-    --content-input-background: 250 30% 20%;
-    --content-input-foreground: 210 20% 90%;
-    --content-output-background: 300 60% 20%;
-    --content-output-foreground: 210 20% 90%;
-  }
-
-  .dark [data-section="history"] {
-    --history-background: 210 20% 20%;
-    --history-foreground: 210 20% 96%;
-    --history-card-background: 210 20% 17%;
-    --history-card-foreground: 210 20% 96%;
-  }
-
-  .dark [data-section="login"] {
-    --login-background: 210 20% 17%;
-    --login-foreground: 210 20% 96%;
-    --login-card-background: 210 20% 17%;
-    --login-card-foreground: 210 20% 96%;
+    --background: 0 0% 15%;
+    --foreground: 0 0% 100%;
+    --primary: 221.2 83.2% 53.3%;
   }
 }
 

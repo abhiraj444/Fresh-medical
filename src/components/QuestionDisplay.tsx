@@ -56,7 +56,7 @@ export function QuestionDisplay({ summary, images }: QuestionDisplayProps) {
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="prose prose-sm prose-invert max-w-none">
+        <div className="prose prose-sm max-w-none">
           <SimpleRenderer text={summary} />
         </div>
         {images && images.length > 0 && (

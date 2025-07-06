@@ -13,7 +13,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DiagnosisCard } from '@/components/DiagnosisCard';
-import { FileText, Loader2, Upload, PlusCircle, BrainCircuit, Lightbulb, Copy, X } from 'lucide-react';
+import { FileText, Loader2, Upload, PlusCircle, BrainCircuit, Lightbulb, Copy } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp, doc, getDoc, updateDoc } from 'firebase/firestore';
@@ -49,17 +49,24 @@ export default function AiDiagnosisPage() {
       const loadCase = async () => {
         setIsLoading(true);
         try {
+          if (!db) {
+            throw new Error('Database not initialized');
+          }
           const caseRef = doc(db, 'cases', caseId);
           const caseSnap = await getDoc(caseRef);
-          if (caseSnap.exists() && caseSnap.data().userId === user.uid) {
+          if (caseSnap.exists() && caseSnap.data().userId === user?.uid) {
             const caseData = caseSnap.data();
             setPatientData(caseData.inputData.patientData || '');
             setFilePreviews(caseData.inputData.supportingDocuments || []);
             setFiles([]); // Can't restore File objects, but previews are shown
             setStructuredQuestion(caseData.inputData.structuredQuestion || null);
-            // For diagnosis cases, outputData is always an object with 'diagnoses' and 'clinicalAnswer'
-            setResults(caseData.outputData.diagnoses || null);
-            setClinicalAnswer(caseData.outputData.clinicalAnswer || null);
+            if (Array.isArray(caseData.outputData)) {
+              setResults(caseData.outputData);
+              setClinicalAnswer(null);
+            } else {
+              setResults(caseData.outputData.diagnoses);
+              setClinicalAnswer(caseData.outputData.clinicalAnswer || null);
+            }
             setCurrentCaseId(caseId);
             toast({ title: 'Case Loaded', description: `Successfully loaded case: ${caseData.title}` });
           } else {
@@ -85,11 +92,6 @@ export default function AiDiagnosisPage() {
       const newPreviews = newFiles.map(file => URL.createObjectURL(file));
       setFilePreviews(prev => [...prev, ...newPreviews]);
     }
-  };
-
-  const handleRemoveFile = (indexToRemove: number) => {
-    setFiles(files.filter((_, index) => index !== indexToRemove));
-    setFilePreviews(filePreviews.filter((_, index) => index !== indexToRemove));
   };
 
   const handlePaste = (event: ClipboardEvent<HTMLTextAreaElement>) => {
@@ -174,10 +176,12 @@ export default function AiDiagnosisPage() {
         },
       };
       if (currentCaseId) {
+        if (!db) throw new Error('Firestore not initialized');
         const caseRef = doc(db, 'cases', currentCaseId);
         await updateDoc(caseRef, caseData);
         toast({ title: 'Case Updated', description: 'Your case has been updated in your history.' });
       } else {
+        if (!db) throw new Error('Firestore not initialized');
         const docRef = await addDoc(collection(db, 'cases'), caseData);
         setCurrentCaseId(docRef.id);
         toast({ title: 'Case Saved', description: 'Your diagnosis case has been saved to your history.' });
@@ -232,18 +236,11 @@ export default function AiDiagnosisPage() {
   }
 
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8" data-section="ai-diagnosis">
-      
-      <div className="flex justify-end mb-4">
-        {(results || clinicalAnswer) && (
-          <Button variant="outline" onClick={handleNewCase}>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            New Case
-          </Button>
-        )}
-      </div>
+    <div className="container mx-auto max-w-7xl px-4 py-8">
+      <Header />
+      <div className="space-y-8">
         {!results && !clinicalAnswer && !isLoading && (
-          <Card className="shadow-lg max-w-2xl mx-auto bg-ai-diagnosis-input-section text-ai-diagnosis-input-section-foreground">
+          <Card className="shadow-lg max-w-2xl mx-auto">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <FileText className="text-primary" />
@@ -286,22 +283,13 @@ export default function AiDiagnosisPage() {
                     Upload PDFs or images, or paste an image into the text area above.
                   </p>
                   {filePreviews.length > 0 && (
-                    <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+                     <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
                       {filePreviews.map((preview, i) => (
-                        <div key={i} className="relative aspect-square">
-                          <img
-                            src={preview}
-                            alt={`preview ${i}`}
-                            className="h-full w-full object-cover rounded-md border"
-                          />
-                          <Button
-                            variant="destructive"
-                            size="icon"
-                            className="absolute top-1 right-1 h-6 w-6"
-                            onClick={() => handleRemoveFile(i)}
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
+                        <div
+                          key={i}
+                          className="relative aspect-square"
+                        >
+                           <img src={preview} alt={`preview ${i}`} className="h-full w-full object-cover rounded-md border" />
                         </div>
                       ))}
                     </div>
@@ -323,6 +311,14 @@ export default function AiDiagnosisPage() {
         {isLoading && !results && (
           <div className="space-y-4">
             <Card>
+              <CardContent className="p-6">
+                <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                  <span>AI is thinking...</span>
+                </div>
+              </CardContent>
+            </Card>
+            <Card>
               <CardHeader>
                 <Skeleton className="h-6 w-3/4" />
               </CardHeader>
@@ -332,7 +328,7 @@ export default function AiDiagnosisPage() {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
+               <CardHeader>
                 <Skeleton className="h-6 w-3/4" />
               </CardHeader>
               <CardContent className="space-y-4">
@@ -348,7 +344,7 @@ export default function AiDiagnosisPage() {
               <QuestionDisplay summary={structuredQuestion.summary} images={structuredQuestion.images} />
             )}
             {clinicalAnswer && clinicalAnswer.answer && (
-              <Card className="border shadow-sm bg-ai-diagnosis-answer-display text-ai-diagnosis-answer-display-foreground">
+              <Card className="shadow-lg">
                   <CardHeader>
                       <div className="flex w-full items-start justify-between gap-4">
                           <div className="flex-grow">
@@ -361,6 +357,10 @@ export default function AiDiagnosisPage() {
                           <div className="flex items-center gap-2">
                             <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => handleCopy(clinicalAnswer.answer, 'answer')} aria-label="Copy answer">
                                 <Copy className="h-4 w-4" />
+                            </Button>
+                            <Button variant="outline" onClick={handleNewCase} className="w-full shrink-0 sm:w-auto">
+                                <PlusCircle />
+                                New Case
                             </Button>
                           </div>
                       </div>
@@ -377,22 +377,22 @@ export default function AiDiagnosisPage() {
                                       </div>
                                   </AccordionTrigger>
                                   <AccordionContent>
-                                      <div className="mt-2 rounded-md border border-border bg-ai-diagnosis-analysis text-ai-diagnosis-analysis-foreground p-4">
+                                      <div className="mt-2 rounded-md border border-amber-300 bg-amber-50 p-4 dark:bg-amber-950">
                                           <div className="flex items-start justify-between">
-                                              <h4 className="font-semibold text-foreground mb-2 flex-grow">
+                                              <h4 className="font-semibold text-amber-800 dark:text-amber-200 mb-2 flex-grow">
                                                   Reasoning
                                               </h4>
                                               <Button
                                                   variant="ghost"
                                                   size="icon"
                                                   onClick={() => handleCopy(clinicalAnswer.reasoning, 'reasoning')}
-                                                  className="h-8 w-8 flex-shrink-0 -mr-2 -mt-2 text-muted-foreground hover:bg-muted hover:text-foreground"
+                                                  className="h-8 w-8 flex-shrink-0 -mr-2 -mt-2 text-amber-800 hover:bg-amber-100 hover:text-amber-900 dark:text-amber-200 dark:hover:bg-amber-900 dark:hover:text-amber-100"
                                                   aria-label="Copy reasoning"
                                               >
                                                   <Copy className="h-4 w-4" />
                                               </Button>
                                           </div>
-                                          <div className="prose prose-sm max-w-none text-muted-foreground" dangerouslySetInnerHTML={{__html: formatText(clinicalAnswer.reasoning)}}></div>
+                                          <div className="prose prose-sm prose-invert max-w-none text-amber-700 dark:text-amber-300" dangerouslySetInnerHTML={{__html: formatText(clinicalAnswer.reasoning)}}></div>
                                       </div>
                                   </AccordionContent>
                               </AccordionItem>
@@ -409,5 +409,6 @@ export default function AiDiagnosisPage() {
           </div>
         </div>
       </div>
+    </div>
   );
 }
